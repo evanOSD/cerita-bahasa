@@ -1,16 +1,82 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bahasa Haloban</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bahasa Haloban - Cerita Bahasa</title>
   <style>
-    body { font-family: Arial, sans-serif; text-align: center; margin: 20px; }
-    iframe { width: 100%; max-width: 720px; height: 405px; border: none; }
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+    }
+    header {
+      background-color: #6200ea;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .dropdown select {
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+    }
+    main {
+      padding: 20px;
+      text-align: center;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+    }
   </style>
 </head>
 <body>
-  <h1>Cerita dalam Bahasa Haloban</h1>
-  <iframe src="https://www.youtube.com/embed/videoseries?list=PL_S3R-nuHsqKJxPHdXsrQ7ZWDB9yAISwX" allowfullscreen></iframe>
+
+  <header>
+    <h1>Bahasa Haloban</h1>
+    <div class="dropdown">
+      <select id="languageSelect" onchange="navigateToLanguage()">
+        <option disabled selected>Pilih Bahasa</option>
+        <option value="../duano">Bahasa Duano</option>
+        <option value="../haloban">Bahasa Haloban</option>
+        <option value="../kaimbulawa">Bahasa Kaimbulawa</option>
+        <option value="../kaili-unde">Bahasa Kaili Unde</option>
+        <option value="../kamaru">Bahasa Kamaru</option>
+        <option value="../kioko">Bahasa Kioko</option>
+        <option value="../kumbewaha">Bahasa Kumbewaha</option>
+        <option value="../lasalimu">Bahasa Lasalimu</option>
+        <option value="../malimpung">Bahasa Malimpung</option>
+        <option value="../mandar">Bahasa Mandar</option>
+        <option value="../pancana">Bahasa Pancana</option>
+        <option value="../sarudu">Bahasa Sarudu</option>
+        <option value="../sikule">Bahasa Sikule</option>
+        <option value="../suwawa">Bahasa Suwawa</option>
+        <option value="../toli-toli">Bahasa Toli Toli</option>
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <h2>Video Cerita dalam Bahasa Haloban</h2>
+    <iframe src="https://www.youtube.com/embed/videoseries?list=PL_S3R-nuHsqKJxPHdXsrQ7ZWDB9yAISwX" allowfullscreen></iframe>
+  </main>
+
+  <script>
+    function navigateToLanguage() {
+      const selected = document.getElementById("languageSelect").value;
+      window.location.href = selected + "/";
+    }
+  </script>
+
 </body>
 </html>
