@@ -1,74 +1,68 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Website Cerita Bahasa</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Daftar Cerita Bahasa Daerah</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #f3f3f3;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      padding: 40px 20px;
+      font-family: sans-serif;
+      margin: 20px;
+      line-height: 1.6;
     }
     h1 {
-      color: #6200ea;
       text-align: center;
+      color: #333;
     }
-    .dropdown {
-      margin-top: 30px;
-    }
-    select {
-      font-size: 18px;
-      padding: 10px;
+    ul {
+      list-style: none;
+      padding: 0;
+      max-width: 600px;
+      margin: 20px auto; /* Center the list */
+      border: 1px solid #ddd;
       border-radius: 8px;
-      border: 1px solid #ccc;
+      overflow: hidden; /* Ensure border radius clips children */
     }
-    footer {
-      margin-top: 60px;
-      color: #777;
-      font-size: 14px;
-      text-align: center;
+    li {
+      border-bottom: 1px solid #eee;
+    }
+    li:last-child {
+      border-bottom: none; /* Remove border from last item */
+    }
+    li a {
+      display: block;
+      padding: 12px 20px;
+      text-decoration: none;
+      color: #0066cc;
+      transition: background-color 0.2s ease;
+    }
+    li a:hover {
+      background-color: #f0f8ff; /* Light blue background on hover */
+      color: #004c99;
     }
   </style>
 </head>
 <body>
-  <h1>Selamat Datang di Website Cerita Bahasa</h1>
-  <p>Silakan pilih bahasa daerah untuk melihat video cerita</p>
 
-  <div class="dropdown">
-    <select id="languageSelect" onchange="navigateToLanguage()">
-      <option disabled selected>Pilih Bahasa</option>
-      <option value="mandar">Bahasa Mandar</option>
-      <option value="kaili-unde">Bahasa Kaili Unde</option>
-      <option value="suwawa">Bahasa Suwawa</option>
-      <option value="toli-toli">Bahasa Toli Toli</option>
-      <option value="kaimbulawa">Bahasa Kaimbulawa</option>
-      <option value="kamaru">Bahasa Kamaru</option>
-      <option value="kioko">Bahasa Kioko</option>
-      <option value="kumbewaha">Bahasa Kumbewaha</option>
-      <option value="lasalimu">Bahasa Lasalimu</option>
-      <option value="malimpung">Bahasa Malimpung</option>
-      <option value="pancana">Bahasa Pancana</option>
-      <option value="sarudu">Bahasa Sarudu</option>
-      <option value="haloban">Bahasa Haloban</option>
-      <option value="duano">Bahasa Duano</option>
-      <option value="sikule">Bahasa Sikule</option>
-    </select>
-  </div>
+  <h1>Pilih Bahasa untuk Mendengarkan Cerita</h1>
 
-  <footer>
-    &copy; 2025 CeritaBahasa | dikembangkan oleh evanosd
-  </footer>
+  <ul>
+    <li><a href="bahasa_mandar.html">Bahasa Mandar</a></li>
+    <li><a href="bahasa_kaili_unde.html">Bahasa Kaili Unde</a></li>
+    <li><a href="bahasa_suwawa.html">Bahasa Suwawa</a></li>
+    <li><a href="bahasa_toli_toli.html">Bahasa Toli Toli</a></li>
+    <li><a href="bahasa_kaimbulawa.html">Bahasa Kaimbulawa</a></li>
+    <li><a href="bahasa_kamaru.html">Bahasa Kamaru</a></li>
+    <li><a href="bahasa_kioko.html">Bahasa Kioko</a></li>
+    <li><a href="bahasa_kumbewaha.html">Bahasa Kumbewaha</a></li>
+    <li><a href="bahasa_lasalimu.html">Bahasa Lasalimu</a></li>
+    <li><a href="bahasa_pancana.html">Bahasa Pancana</a></li>
+    <li><a href="bahasa_sarudu.html">Bahasa Sarudu</a></li>
+    <li><a href="bahasa_malimpung.html">Bahasa Malimpung</a></li>
+    <li><a href="bahasa_haloban.html">Bahasa Haloban</a></li>
+    <li><a href="bahasa_duano.html">Bahasa Duano</a></li>
+    <li><a href="bahasa_sikule.html">Bahasa Sikule</a></li>
+  </ul>
 
-  <script>
-    function navigateToLanguage() {
-      const selected = document.getElementById("languageSelect").value;
-      window.location.href = selected + "/"; // misal mandar/
-    }
-  </script>
 </body>
 </html>
