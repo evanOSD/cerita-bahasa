@@ -5,94 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bahasa Kaili Unde - Cerita Bahasa</title>
   <style>
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-    }
-    header {
-      background-color: #6200ea; /* Warna ungu contoh */
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-    .dropdown select {
-      padding: 6px 10px;
-      font-size: 14px;
-      border-radius: 5px;
-      border: none;
-    }
-    main {
-      padding: 20px;
-      text-align: center;
-    }
-    main h2 {
-        margin-bottom: 15px; /* Jarak bawah judul video */
-    }
-    iframe {
-      width: 100%;
-      max-width: 800px; /* Lebar maksimal video */
-      aspect-ratio: 16 / 9; /* Jaga rasio aspek 16:9 */
-      height: auto; /* Biarkan tinggi menyesuaikan lebar */
-      border: none;
-      display: block; /* Agar margin auto berfungsi */
-      margin-left: auto;
-      margin-right: auto;
-    }
-    #daftar-video {
-      margin-top: 25px; /* Jarak atas dari video */
-      text-align: left; 
-      max-width: 800px; /* Samakan dengan max-width iframe */
-      margin-left: auto;
-      margin-right: auto;
-      padding: 0 10px; /* Padding kiri kanan agar tidak terlalu mepet */
-    }
-     #daftar-video h3 {
-        margin-bottom: 10px;
-        text-align: center; /* Judul daftar video di tengah */
-        color: #333;
-     }
-    #daftar-video button {
-      display: block; 
-      width: 100%;
-      padding: 12px 15px; /* Padding tombol */
-      margin-bottom: 8px;
-      font-size: 1em;
-      text-align: left;
-      cursor: pointer;
-      background-color: #f1f1f1; /* Warna tombol */
-      border: 1px solid #ddd;
-      border-radius: 5px;
-      transition: background-color 0.2s ease;
-    }
-    #daftar-video button:hover {
-      background-color: #e0e0e0; /* Warna tombol saat hover */
-    }
-     /* Style tambahan agar lebih responsif */
-    @media (max-width: 600px) {
-        header {
-            flex-direction: column; /* Susun header ke bawah di layar kecil */
-            padding: 10px;
-        }
-        header h1 {
-            margin-bottom: 10px; /* Jarak bawah judul header */
-        }
-        .dropdown select {
-            width: 100%; /* Buat dropdown full width */
-        }
-        main {
-            padding: 15px;
-        }
-        #daftar-video {
-            padding: 0 5px;
-        }
-    }
+    /* ... CSS Anda yang sudah ada ... (Sama seperti sebelumnya) ... */
+    body { margin: 0; font-family: Arial, sans-serif; background-color: #fff; }
+    header { background-color: #6200ea; color: white; padding: 15px; display: flex; justify-content: space-between; align-items: center; }
+    header h1 { margin: 0; font-size: 20px; }
+    .dropdown select { padding: 6px 10px; font-size: 14px; border-radius: 5px; border: none; }
+    main { padding: 20px; text-align: center; }
+    main h2 { margin-bottom: 15px; }
+    iframe { width: 100%; max-width: 800px; aspect-ratio: 16 / 9; height: auto; border: none; display: block; margin-left: auto; margin-right: auto; }
+    #daftar-video { margin-top: 25px; text-align: left; max-width: 800px; margin-left: auto; margin-right: auto; padding: 0 10px; }
+    #daftar-video h3 { margin-bottom: 10px; text-align: center; color: #333; }
+    #daftar-video button { display: block; width: 100%; padding: 12px 15px; margin-bottom: 8px; font-size: 1em; text-align: left; cursor: pointer; background-color: #f1f1f1; border: 1px solid #ddd; border-radius: 5px; transition: background-color 0.2s ease; }
+    #daftar-video button:hover { background-color: #e0e0e0; }
+    @media (max-width: 600px) { header { flex-direction: column; padding: 10px; } header h1 { margin-bottom: 10px; } .dropdown select { width: 100%; } main { padding: 15px; } #daftar-video { padding: 0 5px; } }
   </style>
 </head>
 <body>
@@ -126,9 +51,9 @@
     
     <iframe 
         id="youtube-player" 
-        src="https://www.youtube.com/embed/videoseries?list=ID_PLAYLIST_ASLI_ANDA&enablejsapi=1" 
-        allowfullscreen>
-    </iframe>
+        src="about:blank?enablejsapi=1"  
+        allowfullscreen> 
+        </iframe>
 
     <div id="daftar-video">
         <h3>Daftar Video:</h3>
@@ -138,97 +63,85 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   
   <script>
-    // 2. Fungsi navigasi dropdown (sudah ada)
+    // ID Playlist untuk halaman ini
+    const playlistId = 'PL_S3R-nuHsqKSX9PpuFyL4zK6fzuIz4te'; // ID untuk Kaili Unde
+
+    // 2. Fungsi navigasi dropdown (sama seperti sebelumnya)
     function navigateToLanguage() {
       const selectElement = document.getElementById("languageSelect");
       const selectedValue = selectElement.value;
-      if (selectedValue) { // Hanya navigasi jika bukan pilihan "Pilih Bahasa"
-          // Asumsi struktur folder: jika file ini ada di /kaili-unde/, 
-          // maka value="../mandar" akan mengarah ke /mandar/
+      if (selectedValue) { 
           window.location.href = selectedValue + "/"; 
       }
     }
-    // Set dropdown ke bahasa saat ini (jika memungkinkan)
-    // Ini sedikit tricky karena kita perlu tahu URL saat ini
-    // Cara sederhana: coba cocokkan bagian akhir path
-    /*
-    const currentPathEnd = window.location.pathname.split('/').filter(Boolean).pop();
-    const selectDropdown = document.getElementById('languageSelect');
-    for (let i = 0; i < selectDropdown.options.length; i++) {
-        const optionValueEnd = selectDropdown.options[i].value.split('/').pop();
-        if (optionValueEnd === currentPathEnd) {
-            selectDropdown.selectedIndex = i;
-            break;
-        }
-    }
-    */
-
 
     // 3. Kode untuk YouTube Player API
     let player; // Variabel global untuk player
+    let playlistHasBeenCued = false; // Flag untuk menandai playlist sudah siap
 
-    // Fungsi ini dipanggil otomatis oleh YouTube API setelah scriptnya dimuat
+    // Fungsi ini dipanggil otomatis oleh YouTube API
     function onYouTubeIframeAPIReady() {
       console.log("YouTube API Siap.");
       player = new YT.Player('youtube-player', {
-        // Tidak perlu menentukan height/width di sini jika sudah diatur CSS
+        // Kita tidak set videoId atau playlistId di sini
         events: {
           'onReady': onPlayerReady,
-          // 'onStateChange': onPlayerStateChange // Aktifkan jika perlu
+          'onStateChange': onPlayerStateChange // Tambahkan event state change
         }
       });
     }
 
-    // 4. Fungsi yang dipanggil saat pemutar video siap
+    // 4. Fungsi yang dipanggil saat pemutar video siap (tapi belum ada video/playlist)
     function onPlayerReady(event) {
-      console.log("Player Siap.");
-      const daftarVideoContainer = document.getElementById('daftar-video');
-      daftarVideoContainer.innerHTML = '<h3>Daftar Video:</h3>'; // Bersihkan dulu jika ada
-
-      let playlistIds = [];
-      try {
-        playlistIds = player.getPlaylist(); // Mencoba mendapatkan array ID video
-        console.log("Playlist IDs:", playlistIds);
-      } catch (e) {
-        console.error("Gagal mendapatkan daftar Playlist IDs:", e);
-      }
-
-      if (playlistIds && playlistIds.length > 0) {
-          // Kita punya daftar ID, buat tombol berdasarkan jumlah video
-          playlistIds.forEach((videoId, index) => {
-            const button = document.createElement('button');
-            
-            // Mendapatkan judul video memerlukan YouTube Data API (kompleks).
-            // Jadi kita gunakan nomor urut saja.
-            button.textContent = `Video ${index + 1}`; // Contoh: Video 1, Video 2, dst.
-            
-            // Tambahkan event listener untuk klik tombol
-            button.onclick = () => {
-              console.log(`Memutar video pada index: ${index} (ID: ${videoId})`);
-              player.playVideoAt(index); // Perintahkan player memutar video ke-X
-              // Opsional: scroll ke atas agar video terlihat
-              // window.scrollTo({ top: player.getIframe().offsetTop - 20, behavior: 'smooth' });
-            };
-            daftarVideoContainer.appendChild(button); // Tambahkan tombol ke div
-          });
-      } else {
-          // Jika getPlaylist() tidak mengembalikan array atau kosong
-          console.warn("Tidak dapat mengambil daftar video dari API secara otomatis.");
-          daftarVideoContainer.innerHTML += "<p>Tidak dapat memuat daftar video secara otomatis saat ini.</p>";
-          // Di sini Anda bisa menambahkan tombol manual jika tahu jumlah video dan ID nya
-          // Contoh: createManualButton(0, 'ID_VIDEO_1', 'Judul Video 1 Manual');
-      }
+      console.log("Player Siap. Memuat playlist:", playlistId);
+      // Perintahkan player untuk memuat (cue) playlist secara eksplisit
+      player.cuePlaylist({
+          list: playlistId,
+          listType: 'playlist'
+      });
+      // Tombol akan dibuat nanti di onPlayerStateChange setelah playlist di-cue
     }
 
-    // 5. (Opsional) Fungsi untuk memantau perubahan state player
-    // function onPlayerStateChange(event) {
-    //    let state = event.data == YT.PlayerState.PLAYING ? "Memutar" :
-    //                event.data == YT.PlayerState.PAUSED ? "Jeda" :
-    //                event.data == YT.PlayerState.BUFFERING ? "Buffering" :
-    //                event.data == YT.PlayerState.ENDED ? "Selesai" :
-    //                event.data == YT.PlayerState.CUED ? "Siap" : "Lainnya";
-    //    console.log("Status Player:", state);
-    // }
+    // 5. Fungsi yang dipanggil saat status player berubah
+    function onPlayerStateChange(event) {
+        console.log("Player state changed:", event.data);
+       // Kita ingin membuat tombol setelah playlist benar-benar siap (status CUED = 5)
+       // Gunakan flag agar tidak membuat tombol berkali-kali jika state berubah lagi
+       if (event.data == YT.PlayerState.CUED && !playlistHasBeenCued) {
+           console.log("Playlist sudah di-cue (siap). Membuat tombol...");
+           playlistHasBeenCued = true; // Tandai bahwa kita sudah proses ini
+           generatePlaylistButtons(); // Panggil fungsi untuk membuat tombol
+       }
+    }
+
+    // 6. Fungsi untuk membuat tombol playlist (dipanggil dari onStateChange)
+    function generatePlaylistButtons() {
+        const daftarVideoContainer = document.getElementById('daftar-video');
+        daftarVideoContainer.innerHTML = '<h3>Daftar Video:</h3>'; // Bersihkan dulu
+
+        let playlistIds = [];
+        try {
+            playlistIds = player.getPlaylist(); // Coba lagi dapatkan ID setelah di-cue
+            console.log("Playlist IDs didapatkan:", playlistIds);
+        } catch (e) {
+            console.error("Gagal mendapatkan daftar Playlist IDs setelah cue:", e);
+        }
+
+        if (playlistIds && playlistIds.length > 0) {
+            playlistIds.forEach((videoId, index) => {
+                const button = document.createElement('button');
+                button.textContent = `Video ${index + 1}`; // Judul sementara
+                button.onclick = () => {
+                    console.log(`Memutar video pada index: ${index} (ID: ${videoId})`);
+                    player.playVideoAt(index); 
+                };
+                daftarVideoContainer.appendChild(button);
+            });
+        } else {
+            console.warn("Tidak dapat mengambil daftar video dari API setelah playlist di-cue.");
+            daftarVideoContainer.innerHTML += "<p>Tidak dapat memuat daftar video secara otomatis saat ini.</p>";
+        }
+    }
 
   </script>
 
