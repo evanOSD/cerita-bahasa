@@ -2,109 +2,72 @@
 <html lang="id">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Website Cerita Bahasa</title>
   <style>
     body {
       margin: 0;
       font-family: Arial, sans-serif;
-    }
-    header {
-      background-color: #6200ea;
-      color: white;
-      padding: 10px 15px;
+      background-color: #f3f3f3;
       display: flex;
-      justify-content: space-between;
+      flex-direction: column;
       align-items: center;
+      padding: 40px 20px;
     }
-    .menu-icon {
-      font-size: 24px;
-      cursor: pointer;
-    }
-    .dropdown {
-      position: relative;
-      display: inline-block;
-    }
-    .dropdown select {
-      padding: 5px;
-      border-radius: 5px;
-    }
-    main {
-      padding: 20px;
+    h1 {
+      color: #6200ea;
       text-align: center;
     }
-    .login-btn {
-      padding: 10px 20px;
-      font-size: 16px;
-      background-color: #03dac5;
-      border: none;
-      border-radius: 5px;
-      cursor: pointer;
+    .dropdown {
+      margin-top: 30px;
+    }
+    select {
+      font-size: 18px;
+      padding: 10px;
+      border-radius: 8px;
+      border: 1px solid #ccc;
+    }
+    footer {
+      margin-top: 60px;
+      color: #777;
+      font-size: 14px;
+      text-align: center;
     }
   </style>
 </head>
 <body>
-  <header>
-    <div class="menu-icon">&#9776;</div>
-    <div class="dropdown">
-      <select id="languageSelect" onchange="navigateToLanguage()">
-        <option disabled selected>Pilih Bahasa</option>
-        <option value="duano">Bahasa Duano</option>
-        <option value="haloban">Bahasa Haloban</option>
-        <option value="kaimbulawa">Bahasa Kaimbulawa</option>
-        <option value="kaili-unde">Bahasa Kaili Unde</option>
-        <option value="kamaru">Bahasa Kamaru</option>
-        <option value="kioko">Bahasa Kioko</option>
-        <option value="kumbewaha">Bahasa Kumbewaha</option>
-        <option value="lasalimu">Bahasa Lasalimu</option>
-        <option value="malimpung">Bahasa Malimpung</option>
-        <option value="mandar">Bahasa Mandar</option>
-        <option value="pancana">Bahasa Pancana</option>
-        <option value="sarudu">Bahasa Sarudu</option>
-        <option value="sikule">Bahasa Sikule</option>
-        <option value="suwawa">Bahasa Suwawa</option>
-        <option value="tolitoli">Bahasa Toli Toli</option>
-        <!-- Tambahkan semua bahasa lainnya -->
-      </select>
-    </div>
-  </header>
+  <h1>Selamat Datang di Website Cerita Bahasa</h1>
+  <p>Silakan pilih bahasa daerah untuk melihat video cerita</p>
 
-  <main>
-    <h1>Selamat Datang di Website 27 Cerita dalam Bahasa Daerah</h1>
-    <button class="login-btn" id="login">Login dengan Google</button>
-  </main>
+  <div class="dropdown">
+    <select id="languageSelect" onchange="navigateToLanguage()">
+      <option disabled selected>Pilih Bahasa</option>
+      <option value="mandar">Bahasa Mandar</option>
+      <option value="kaili-unde">Bahasa Kaili Unde</option>
+      <option value="suwawa">Bahasa Suwawa</option>
+      <option value="toli-toli">Bahasa Toli Toli</option>
+      <option value="kaimbulawa">Bahasa Kaimbulawa</option>
+      <option value="kamaru">Bahasa Kamaru</option>
+      <option value="kioko">Bahasa Kioko</option>
+      <option value="kumbewaha">Bahasa Kumbewaha</option>
+      <option value="lasalimu">Bahasa Lasalimu</option>
+      <option value="malimpung">Bahasa Malimpung</option>
+      <option value="pancana">Bahasa Pancana</option>
+      <option value="sarudu">Bahasa Sarudu</option>
+      <option value="haloban">Bahasa Haloban</option>
+      <option value="duano">Bahasa Duano</option>
+      <option value="sikule">Bahasa Sikule</option>
+    </select>
+  </div>
 
-  <script type="module">
-    import { initializeApp } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-app.js";
-    import { getAuth, signInWithPopup, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/11.6.1/firebase-auth.js";
+  <footer>
+    &copy; 2025 CeritaBahasa | dikembangkan oleh evanosd
+  </footer>
 
-    const firebaseConfig = {
-      apiKey: "AIzaSyDN3_g8cCFD5LvSF1lbFZU5rQ40KD41dwQ",
-      authDomain: "cerita-e3f82.firebaseapp.com",
-      projectId: "cerita-e3f82",
-      storageBucket: "cerita-e3f82.appspot.com",
-      messagingSenderId: "367517556840",
-      appId: "1:367517556840:web:265b9b699c09062c3edbdd"
-    };
-
-    const app = initializeApp(firebaseConfig);
-    const auth = getAuth(app);
-    const provider = new GoogleAuthProvider();
-
-    document.getElementById("login").addEventListener("click", () => {
-      signInWithPopup(auth, provider)
-        .then((result) => {
-          const user = result.user;
-          alert(`Berhasil login sebagai: ${user.displayName}`);
-        })
-        .catch((error) => {
-          console.error("Login error:", error.message);
-        });
-    });
-
+  <script>
     function navigateToLanguage() {
-      const lang = document.getElementById("languageSelect").value;
-      window.location.href = `${lang}/`; // arahkan ke folder, bukan file .html
+      const selected = document.getElementById("languageSelect").value;
+      window.location.href = selected + "/"; // misal mandar/
     }
   </script>
 </body>
