@@ -8,37 +8,20 @@
     body {
       font-family: sans-serif;
       margin: 20px;
-      line-height: 1.6;
+      text-align: center;
     }
     h1 {
-      text-align: center;
       color: #333;
     }
-    ul {
-      list-style: none;
-      padding: 0;
-      max-width: 600px;
-      margin: 20px auto; /* Center the list */
-      border: 1px solid #ddd;
-      border-radius: 8px;
-      overflow: hidden; /* Ensure border radius clips children */
+    select {
+      font-size: 16px;
+      padding: 10px 15px;
+      border-radius: 6px;
+      border: 1px solid #ccc;
+      margin-top: 20px;
     }
-    li {
-      border-bottom: 1px solid #eee;
-    }
-    li:last-child {
-      border-bottom: none; /* Remove border from last item */
-    }
-    li a {
-      display: block;
-      padding: 12px 20px;
-      text-decoration: none;
-      color: #0066cc;
-      transition: background-color 0.2s ease;
-    }
-    li a:hover {
-      background-color: #f0f8ff; /* Light blue background on hover */
-      color: #004c99;
+    .dropdown-container {
+      margin-top: 40px;
     }
   </style>
 </head>
@@ -46,23 +29,35 @@
 
   <h1>Pilih Bahasa untuk Mendengarkan Cerita</h1>
 
-  <ul>
-    <li><a href="bahasa_mandar.html">Bahasa Mandar</a></li>
-    <li><a href="bahasa_kaili_unde.html">Bahasa Kaili Unde</a></li>
-    <li><a href="bahasa_suwawa.html">Bahasa Suwawa</a></li>
-    <li><a href="bahasa_toli_toli.html">Bahasa Toli Toli</a></li>
-    <li><a href="bahasa_kaimbulawa.html">Bahasa Kaimbulawa</a></li>
-    <li><a href="bahasa_kamaru.html">Bahasa Kamaru</a></li>
-    <li><a href="bahasa_kioko.html">Bahasa Kioko</a></li>
-    <li><a href="bahasa_kumbewaha.html">Bahasa Kumbewaha</a></li>
-    <li><a href="bahasa_lasalimu.html">Bahasa Lasalimu</a></li>
-    <li><a href="bahasa_pancana.html">Bahasa Pancana</a></li>
-    <li><a href="bahasa_sarudu.html">Bahasa Sarudu</a></li>
-    <li><a href="bahasa_malimpung.html">Bahasa Malimpung</a></li>
-    <li><a href="bahasa_haloban.html">Bahasa Haloban</a></li>
-    <li><a href="bahasa_duano.html">Bahasa Duano</a></li>
-    <li><a href="bahasa_sikule.html">Bahasa Sikule</a></li>
-  </ul>
+  <div class="dropdown-container">
+    <select onchange="navigateToLanguage(this)">
+      <option selected disabled>-- Pilih Bahasa --</option>
+      <option value="mandar/index.html">Bahasa Mandar</option>
+      <option value="kaili-unde/index.html">Bahasa Kaili Unde</option>
+      <option value="suwawa/index.html">Bahasa Suwawa</option>
+      <option value="toli-toli/index.html">Bahasa Toli Toli</option>
+      <option value="kaimbulawa/index.html">Bahasa Kaimbulawa</option>
+      <option value="kamaru/index.html">Bahasa Kamaru</option>
+      <option value="kioko/index.html">Bahasa Kioko</option>
+      <option value="kumbewaha/index.html">Bahasa Kumbewaha</option>
+      <option value="lasalimu/index.html">Bahasa Lasalimu</option>
+      <option value="pancana/index.html">Bahasa Pancana</option>
+      <option value="sarudu/index.html">Bahasa Sarudu</option>
+      <option value="malimpung/index.html">Bahasa Malimpung</option>
+      <option value="haloban/index.html">Bahasa Haloban</option>
+      <option value="duano/index.html">Bahasa Duano</option>
+      <option value="sikule/index.html">Bahasa Sikule</option>
+    </select>
+  </div>
+
+  <script>
+    function navigateToLanguage(select) {
+      const selectedValue = select.value;
+      if (selectedValue) {
+        window.location.href = selectedValue;
+      }
+    }
+  </script>
 
 </body>
 </html>
