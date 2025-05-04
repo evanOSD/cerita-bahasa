@@ -1,61 +1,78 @@
 <!DOCTYPE html>
 <html lang="id">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Daftar Cerita Bahasa Daerah</title>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Beranda - Cerita Bahasa</title>
   <style>
     body {
-      font-family: sans-serif;
-      margin: 20px;
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+    }
+    header {
+      background-color: #6200ea;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .dropdown select {
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+    }
+    main {
+      padding: 20px;
       text-align: center;
     }
-    h1 {
-      color: #333;
-    }
-    select {
-      font-size: 16px;
-      padding: 10px 15px;
-      border-radius: 6px;
-      border: 1px solid #ccc;
-      margin-top: 20px;
-    }
-    .dropdown-container {
-      margin-top: 40px;
+    h2 {
+      font-size: 22px;
+      margin-bottom: 30px;
     }
   </style>
 </head>
 <body>
 
-  <h1>Pilih Bahasa untuk Mendengarkan Cerita</h1>
+  <header>
+    <h1>Cerita Bahasa Daerah</h1>
+    <div class="dropdown">
+      <select id="languageSelect" onchange="navigateToLanguage()">
+        <option disabled selected>-- Pilih Bahasa --</option>
+        <option value="mandar">Bahasa Mandar</option>
+        <option value="kaili-unde">Bahasa Kaili Unde</option>
+        <option value="suwawa">Bahasa Suwawa</option>
+        <option value="toli-toli">Bahasa Toli Toli</option>
+        <option value="kaimbulawa">Bahasa Kaimbulawa</option>
+        <option value="kamaru">Bahasa Kamaru</option>
+        <option value="kioko">Bahasa Kioko</option>
+        <option value="kumbewaha">Bahasa Kumbewaha</option>
+        <option value="lasalimu">Bahasa Lasalimu</option>
+        <option value="pancana">Bahasa Pancana</option>
+        <option value="sarudu">Bahasa Sarudu</option>
+        <option value="malimpung">Bahasa Malimpung</option>
+        <option value="haloban">Bahasa Haloban</option>
+        <option value="duano">Bahasa Duano</option>
+        <option value="sikule">Bahasa Sikule</option>
+      </select>
+    </div>
+  </header>
 
-  <div class="dropdown-container">
-    <select onchange="navigateToLanguage(this)">
-      <option selected disabled>-- Pilih Bahasa --</option>
-      <option value="mandar/index.html">Bahasa Mandar</option>
-      <option value="kaili-unde/index.html">Bahasa Kaili Unde</option>
-      <option value="suwawa/index.html">Bahasa Suwawa</option>
-      <option value="toli-toli/index.html">Bahasa Toli Toli</option>
-      <option value="kaimbulawa/index.html">Bahasa Kaimbulawa</option>
-      <option value="kamaru/index.html">Bahasa Kamaru</option>
-      <option value="kioko/index.html">Bahasa Kioko</option>
-      <option value="kumbewaha/index.html">Bahasa Kumbewaha</option>
-      <option value="lasalimu/index.html">Bahasa Lasalimu</option>
-      <option value="pancana/index.html">Bahasa Pancana</option>
-      <option value="sarudu/index.html">Bahasa Sarudu</option>
-      <option value="malimpung/index.html">Bahasa Malimpung</option>
-      <option value="haloban/index.html">Bahasa Haloban</option>
-      <option value="duano/index.html">Bahasa Duano</option>
-      <option value="sikule/index.html">Bahasa Sikule</option>
-    </select>
-  </div>
+  <main>
+    <h2>Silakan Pilih Bahasa untuk Mendengarkan Cerita</h2>
+    <p>Gunakan menu dropdown di kanan atas untuk memilih bahasa daerah yang tersedia.</p>
+  </main>
 
   <script>
-    function navigateToLanguage(select) {
-      const selectedValue = select.value;
-      if (selectedValue) {
-        window.location.href = selectedValue;
-      }
+    function navigateToLanguage() {
+      const selected = document.getElementById("languageSelect").value;
+      window.location.href = selected + "/";
     }
   </script>
 
