@@ -38,12 +38,21 @@
       align-items: center;
       padding: 20px;
     }
+    #videoSelect {
+      margin-bottom: 15px;
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      max-width: 90%;
+      width: 300px;
+      text-align: center;
+    }
     iframe {
       width: 100%;
       max-width: 800px;
       height: 450px;
       border: none;
-      margin-bottom: 20px;
     }
   </style>
 </head>
@@ -71,14 +80,15 @@
         <option value="../toli-toli">Bahasa Toli Toli</option>
       </select>
     </div>
-    <div class="dropdown">
-      <select id="videoSelect" onchange="playSelectedVideo()">
-        <option disabled selected>Daftar Cerita</option>
-      </select>
-    </div>
   </header>
 
   <main>
+    <!-- Dropdown Daftar Video di Tengah -->
+    <select id="videoSelect" onchange="playSelectedVideo()">
+      <option disabled selected>Daftar Cerita</option>
+    </select>
+
+    <!-- Video Player -->
     <iframe id="videoPlayer" src="" allowfullscreen></iframe>
   </main>
 
@@ -117,7 +127,7 @@
           option.textContent = title;
           videoSelect.appendChild(option);
 
-          // Putar video pertama secara otomatis
+          // Putar video pertama otomatis
           if (index === 0) {
             playVideo(videoId);
             option.selected = true;
