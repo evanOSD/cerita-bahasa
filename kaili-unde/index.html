@@ -3,102 +3,63 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bahasa Kaili Unde - Cerita Bahasa</title>
+  <title>Bahasa Kaili Unde</title>
   <style>
     body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background-color: #fff;
-    }
-    header {
-      background-color: #6200ea;
-      color: white;
-      padding: 15px;
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    header h1 {
-      margin: 0;
-      font-size: 20px;
-    }
-    .dropdown select {
-      padding: 6px 10px;
-      font-size: 14px;
-      border-radius: 5px;
-      border: none;
-    }
-    main {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
+      font-family: sans-serif;
       padding: 20px;
     }
-    iframe {
-      width: 100%;
-      max-width: 800px;
-      height: 450px;
-      border: none;
-      margin-bottom: 20px;
-    }
     .video-list {
-      display: flex;
-      flex-wrap: wrap;
-      justify-content: center;
-      gap: 10px;
-      max-width: 800px;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 20px;
     }
-    .video-button {
-      background-color: #eee;
+    .video-item {
       border: 1px solid #ccc;
-      padding: 10px 15px;
-      border-radius: 5px;
-      cursor: pointer;
-      transition: background-color 0.2s;
+      border-radius: 8px;
+      overflow: hidden;
+      text-align: center;
+      box-shadow: 2px 2px 8px rgba(0,0,0,0.1);
     }
-    .video-button:hover {
-      background-color: #ddd;
+    .video-item img {
+      width: 100%;
+    }
+    .video-title {
+      padding: 10px;
+      font-size: 16px;
     }
   </style>
 </head>
 <body>
-
-  <header>
-    <h1>Bahasa Kaili Unde</h1>
-    <div class="dropdown">
-      <select id="languageSelect" onchange="navigateToLanguage()">
-        <option disabled selected>Pilih Bahasa</option>
-        <option value="../mandar">Bahasa Mandar</option>
-        <option value="../kaili-unde">Bahasa Kaili Unde</option>
-        <option value="../suwawa">Bahasa Suwawa</option>
-        <!-- Tambahkan bahasa lain di sini -->
-      </select>
-    </div>
-  </header>
-
-  <main>
-    <iframe id="videoPlayer" src="" allowfullscreen></iframe>
-
-    <div class="video-list">
-      <div class="video-button" onclick="playVideo('yKlGDsC24OY')">Cerita 1</div>
-      <div class="video-button" onclick="playVideo('qHFCS4k0CII')">Cerita 2</div>
-      <div class="video-button" onclick="playVideo('fc4B8y0jPn0')">Cerita 3</div>
-      <div class="video-button" onclick="playVideo('UjYbTxkajCo')">Cerita 4</div>
-      <div class="video-button" onclick="playVideo('ZiAdfcjpEuA')">Cerita 5</div>
-    </div>
-  </main>
+  <h1>Video Bahasa Kaili Unde</h1>
+  <div class="video-list" id="videoList"></div>
 
   <script>
-    function navigateToLanguage() {
-      const selected = document.getElementById("languageSelect").value;
-      window.location.href = selected + "/";
-    }
+    const API_KEY = "AIzaSyDBefJ54bf1RQBrmMye6FjD-gyPLT3bOyU";
+    const PLAYLIST_ID = "PL_S3R-nuHsqKSX9PpuFyL4zK6fzuIz4te";
 
-    function playVideo(videoId) {
-      const player = document.getElementById("videoPlayer");
-      player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
-    }
+    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_ID}&maxResults=50&key=${API_KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        const container = document.getElementById("videoList");
+        data.items.forEach(item => {
+          const videoId = item.snippet.resourceId.videoId;
+          const title = item.snippet.title;
+          const thumbnail = item.snippet.thumbnails.medium.url;
+          const videoUrl = `https://www.youtube.com/watch?v=${videoId}`;
+
+          const videoElement = document.createElement("div");
+          videoElement.className = "video-item";
+          videoElement.innerHTML = `
+            <a href="${videoUrl}" target="_blank">
+              <img src="${thumbnail}" alt="${title}" />
+              <div class="video-title">${title}</div>
+            </a>
+          `;
+          container.appendChild(videoElement);
+        });
+      })
+      .catch(error => console.error("Gagal mengambil data video:", error));
   </script>
-
 </body>
 </html>
