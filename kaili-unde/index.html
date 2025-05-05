@@ -3,6 +3,143 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bahasa Kaili Unde - Cerita Bahasa</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: Arial, sans-serif;
+      background-color: #fff;
+    }
+    header {
+      background-color: #6200ea;
+      color: white;
+      padding: 15px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+    header h1 {
+      margin: 0;
+      font-size: 20px;
+    }
+    .dropdown select {
+      padding: 6px 10px;
+      font-size: 14px;
+      border-radius: 5px;
+      border: none;
+    }
+    main {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      padding: 20px;
+    }
+    iframe {
+      width: 100%;
+      max-width: 800px;
+      height: 450px;
+      border: none;
+      margin-bottom: 20px;
+    }
+    .video-list {
+      display: flex;
+      flex-wrap: wrap;
+      justify-content: center;
+      gap: 10px;
+      max-width: 800px;
+    }
+    .video-button {
+      background-color: #eee;
+      border: 1px solid #ccc;
+      padding: 10px 15px;
+      border-radius: 5px;
+      cursor: pointer;
+      transition: background-color 0.2s;
+      text-align: center;
+      font-size: 14px;
+    }
+    .video-button:hover {
+      background-color: #ddd;
+    }
+  </style>
+</head>
+<body>
+
+  <header>
+    <h1>Bahasa Kaili Unde</h1>
+    <div class="dropdown">
+      <select id="languageSelect" onchange="navigateToLanguage()">
+        <option disabled selected>Pilih Bahasa</option>
+        <option value="../mandar">Bahasa Mandar</option>
+        <option value="../kaili-unde">Bahasa Kaili Unde</option>
+        <option value="../suwawa">Bahasa Suwawa</option>
+        <!-- Tambahkan bahasa lain di sini -->
+      </select>
+    </div>
+  </header>
+
+  <main>
+    <iframe id="videoPlayer" src="" allowfullscreen></iframe>
+
+    <div class="video-list" id="videoList">
+      <p>Memuat daftar video...</p>
+    </div>
+  </main>
+
+  <script>
+    function navigateToLanguage() {
+      const selected = document.getElementById("languageSelect").value;
+      window.location.href = selected + "/";
+    }
+
+    function playVideo(videoId) {
+      const player = document.getElementById("videoPlayer");
+      player.src = `https://www.youtube.com/embed/${videoId}?autoplay=1`;
+    }
+
+    // Konfigurasi YouTube API
+    const API_KEY = "AIzaSyDBefJ54bf1RQBrmMye6FjD-gyPLT3bOyU";
+    const PLAYLIST_ID = "PL_S3R-nuHsqKSX9PpuFyL4zK6fzuIz4te";
+
+    // Ambil video dari playlist
+    fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_ID}&maxResults=50&key=${API_KEY}`)
+      .then(response => response.json())
+      .then(data => {
+        const videoList = document.getElementById("videoList");
+        videoList.innerHTML = ""; // Hapus pesan "Memuat..."
+        data.items.forEach((item, index) => {
+          const videoId = item.snippet.resourceId.videoId;
+          const title = item.snippet.title;
+
+          const button = document.createElement("div");
+          button.className = "video-button";
+          button.textContent = title;
+          button.onclick = () => playVideo(videoId);
+
+          videoList.appendChild(button);
+
+          // Putar video pertama secara otomatis
+          if (index === 0) {
+            playVideo(videoId);
+          }
+        });
+      })
+      .catch(error => {
+        document.getElementById("videoList").innerHTML = "<p>Gagal memuat video.</p>";
+        console.error("Gagal mengambil data video:", error);
+      });
+  </script>
+
+</body>
+</html>
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
   <title>Bahasa Kaili Unde</title>
   <style>
     body {
