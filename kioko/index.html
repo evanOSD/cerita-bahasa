@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
-  <title>Bahasa Kumbewaha - Cerita Bahasa</title>
+  <title>Bahasa Kioko - Cerita Bahasa</title>
   <style>
     body {
       margin: 0;
@@ -66,7 +66,7 @@
 <body>
 
   <header>
-    <h1>Bahasa Kumbewaha</h1>
+    <h1>Bahasa Kioko</h1>
     <div class="dropdown">
       <select id="languageSelect" onchange="navigateToLanguage()">
         <option disabled selected>Pilih Bahasa</option>
@@ -119,7 +119,7 @@
     }
 
     const API_KEY = "AIzaSyDBefJ54bf1RQBrmMye6FjD-gyPLT3bOyU";
-    const PLAYLIST_ID = "PL_S3R-nuHsqLwgUmfFH9QykqxyEMxjcka";
+    const PLAYLIST_ID = "PL_S3R-nuHsqJOnsLct-lwN5hZNAzqjJJZ";
 
     fetch(`https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${PLAYLIST_ID}&maxResults=50&key=${API_KEY}`)
       .then(response => response.json())
