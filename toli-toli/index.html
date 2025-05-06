@@ -200,18 +200,18 @@
 
     function logout() {
       firebase.auth().signOut().then(() => {
-        window.location.href = "/";
+        window.location.href = "/cerita-bahasa/";
       });
     }
 
     // Auth check
     firebase.auth().onAuthStateChanged(user => {
-      if (!user) {
-        alert("Silakan login terlebih dahulu");
-        window.location.href = "/";
-      } else {
-        document.getElementById("userName").textContent = `Hai, ${user.displayName || "Pengguna"}`;
-      }
+  if (user) {
+    document.getElementById("userName").textContent = `Hai, ${user.displayName || "Pengguna"}`;
+  } else {
+    alert("Silakan login terlebih dahulu");
+    window.location.href = "/cerita-bahasa/";
+  }
     });
 
     // Load video playlist
