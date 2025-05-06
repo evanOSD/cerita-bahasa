@@ -36,40 +36,107 @@
       font-size: 22px;
       margin-bottom: 30px;
     }
+    button {
+      padding: 10px 20px;
+      margin: 10px;
+      font-size: 16px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .google {
+      background-color: #db4437;
+      color: white;
+    }
+    .facebook {
+      background-color: #4267B2;
+      color: white;
+    }
   </style>
 </head>
 <body>
 
-  <header>
-    <h1>Cerita Bahasa Daerah</h1>
-    <div class="dropdown">
-      <select id="languageSelect" onchange="navigateToLanguage()">
-        <option disabled selected>-- Pilih Bahasa --</option>
-        <option value="mandar">Bahasa Mandar</option>
-        <option value="kaili-unde">Bahasa Kaili Unde</option>
-        <option value="suwawa">Bahasa Suwawa</option>
-        <option value="toli-toli">Bahasa Toli Toli</option>
-        <option value="kaimbulawa">Bahasa Kaimbulawa</option>
-        <option value="kamaru">Bahasa Kamaru</option>
-        <option value="kioko">Bahasa Kioko</option>
-        <option value="kumbewaha">Bahasa Kumbewaha</option>
-        <option value="lasalimu">Bahasa Lasalimu</option>
-        <option value="pancana">Bahasa Pancana</option>
-        <option value="sarudu">Bahasa Sarudu</option>
-        <option value="malimpung">Bahasa Malimpung</option>
-        <option value="haloban">Bahasa Haloban</option>
-        <option value="duano">Bahasa Duano</option>
-        <option value="sikule">Bahasa Sikule</option>
-      </select>
-    </div>
-  </header>
+  <div id="authContent" style="display:none;">
+    <header>
+      <h1>Cerita Bahasa Daerah</h1>
+      <div class="dropdown">
+        <select id="languageSelect" onchange="navigateToLanguage()">
+          <option disabled selected>-- Pilih Bahasa --</option>
+          <option value="mandar">Bahasa Mandar</option>
+          <option value="kaili-unde">Bahasa Kaili Unde</option>
+          <option value="suwawa">Bahasa Suwawa</option>
+          <option value="toli-toli">Bahasa Toli Toli</option>
+          <option value="kaimbulawa">Bahasa Kaimbulawa</option>
+          <option value="kamaru">Bahasa Kamaru</option>
+          <option value="kioko">Bahasa Kioko</option>
+          <option value="kumbewaha">Bahasa Kumbewaha</option>
+          <option value="lasalimu">Bahasa Lasalimu</option>
+          <option value="pancana">Bahasa Pancana</option>
+          <option value="sarudu">Bahasa Sarudu</option>
+          <option value="malimpung">Bahasa Malimpung</option>
+          <option value="haloban">Bahasa Haloban</option>
+          <option value="duano">Bahasa Duano</option>
+          <option value="sikule">Bahasa Sikule</option>
+        </select>
+      </div>
+    </header>
 
-  <main>
-    <h2>Silakan Pilih Bahasa untuk Mendengarkan Cerita</h2>
-    <p>Gunakan menu dropdown di kanan atas untuk memilih bahasa daerah yang tersedia.</p>
-  </main>
+    <main>
+      <h2>Silakan Pilih Bahasa untuk Mendengarkan Cerita</h2>
+      <p>Gunakan menu dropdown di kanan atas untuk memilih bahasa daerah yang tersedia.</p>
+    </main>
+  </div>
+
+  <div id="loginContent" style="text-align:center; padding:50px;">
+    <h2>Silakan Login untuk Mengakses Cerita Bahasa</h2>
+    <button class="google" onclick="loginWithGoogle()">Login dengan Google</button><br>
+    <button class="facebook" onclick="loginWithFacebook()">Login dengan Facebook</button>
+  </div>
+
+  <!-- Firebase SDK -->
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-app-compat.js"></script>
+  <script src="https://www.gstatic.com/firebasejs/10.12.0/firebase-auth-compat.js"></script>
 
   <script>
+    // GANTI DENGAN KONFIGURASI FIREBASE ANDA
+    const firebaseConfig = {
+      apiKey: "AIzaSyDN3_g8cCFD5LvSF1lbFZU5rQ40KD41dwQ",
+      authDomain: "cerita-e3f82.firebaseapp.com",
+      projectId: "cerita-e3f82",
+      appId: "1:367517556840:web:265b9b699c09062c3edbdd"
+    };
+
+    firebase.initializeApp(firebaseConfig);
+    const auth = firebase.auth();
+
+    function loginWithGoogle() {
+      const provider = new firebase.auth.GoogleAuthProvider();
+      auth.signInWithPopup(provider).then(result => {
+        location.reload();
+      }).catch(error => {
+        alert("Login gagal: " + error.message);
+      });
+    }
+
+    function loginWithFacebook() {
+      const provider = new firebase.auth.FacebookAuthProvider();
+      auth.signInWithPopup(provider).then(result => {
+        location.reload();
+      }).catch(error => {
+        alert("Login gagal: " + error.message);
+      });
+    }
+
+    auth.onAuthStateChanged(user => {
+      if (user) {
+        document.getElementById("authContent").style.display = "block";
+        document.getElementById("loginContent").style.display = "none";
+      } else {
+        document.getElementById("authContent").style.display = "none";
+        document.getElementById("loginContent").style.display = "block";
+      }
+    });
+
     function navigateToLanguage() {
       const selected = document.getElementById("languageSelect").value;
       window.location.href = selected + "/";
