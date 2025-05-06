@@ -52,6 +52,48 @@
       background-color: #4267B2;
       color: white;
     }
+
+    /* Tambahan untuk dropdown profil */
+    .profile-menu {
+      position: relative;
+      display: inline-block;
+    }
+    .profile-button {
+      background-color: #3700b3;
+      color: white;
+      border: none;
+      padding: 8px 12px;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+    .profile-dropdown {
+      display: none;
+      position: absolute;
+      right: 0;
+      background-color: white;
+      color: black;
+      box-shadow: 0px 4px 6px rgba(0,0,0,0.2);
+      z-index: 1;
+      border-radius: 5px;
+      min-width: 160px;
+    }
+    .profile-dropdown p, .profile-dropdown button {
+      padding: 10px;
+      margin: 0;
+      text-align: left;
+      width: 100%;
+      background: none;
+      border: none;
+      font-size: 14px;
+      cursor: pointer;
+    }
+    .profile-dropdown p {
+      font-weight: bold;
+      cursor: default;
+    }
+    .profile-menu:hover .profile-dropdown {
+      display: block;
+    }
   </style>
 </head>
 <body>
@@ -59,30 +101,39 @@
   <div id="authContent" style="display:none;">
     <header>
       <h1>Cerita Bahasa Daerah</h1>
-      <div class="dropdown">
-        <select id="languageSelect" onchange="navigateToLanguage()">
-          <option disabled selected>-- Pilih Bahasa --</option>
-          <option value="mandar">Bahasa Mandar</option>
-          <option value="kaili-unde">Bahasa Kaili Unde</option>
-          <option value="suwawa">Bahasa Suwawa</option>
-          <option value="toli-toli">Bahasa Toli Toli</option>
-          <option value="kaimbulawa">Bahasa Kaimbulawa</option>
-          <option value="kamaru">Bahasa Kamaru</option>
-          <option value="kioko">Bahasa Kioko</option>
-          <option value="kumbewaha">Bahasa Kumbewaha</option>
-          <option value="lasalimu">Bahasa Lasalimu</option>
-          <option value="pancana">Bahasa Pancana</option>
-          <option value="sarudu">Bahasa Sarudu</option>
-          <option value="malimpung">Bahasa Malimpung</option>
-          <option value="haloban">Bahasa Haloban</option>
-          <option value="duano">Bahasa Duano</option>
-          <option value="sikule">Bahasa Sikule</option>
-        </select>
+      <div style="display: flex; align-items: center; gap: 15px;">
+        <div class="dropdown">
+          <select id="languageSelect" onchange="navigateToLanguage()">
+            <option disabled selected>-- Pilih Bahasa --</option>
+            <option value="mandar">Bahasa Mandar</option>
+            <option value="kaili-unde">Bahasa Kaili Unde</option>
+            <option value="suwawa">Bahasa Suwawa</option>
+            <option value="toli-toli">Bahasa Toli Toli</option>
+            <option value="kaimbulawa">Bahasa Kaimbulawa</option>
+            <option value="kamaru">Bahasa Kamaru</option>
+            <option value="kioko">Bahasa Kioko</option>
+            <option value="kumbewaha">Bahasa Kumbewaha</option>
+            <option value="lasalimu">Bahasa Lasalimu</option>
+            <option value="pancana">Bahasa Pancana</option>
+            <option value="sarudu">Bahasa Sarudu</option>
+            <option value="malimpung">Bahasa Malimpung</option>
+            <option value="haloban">Bahasa Haloban</option>
+            <option value="duano">Bahasa Duano</option>
+            <option value="sikule">Bahasa Sikule</option>
+          </select>
+        </div>
+        <div class="profile-menu">
+          <button class="profile-button">👤 Profil</button>
+          <div class="profile-dropdown">
+            <p id="userName">Pengguna</p>
+            <button onclick="logout()">Keluar</button>
+          </div>
+        </div>
       </div>
     </header>
 
     <main>
-      <h2>Silakan Pilih Bahasa untuk Mendengarkan Cerita</h2>
+      <h2 id="greeting">Silakan Pilih Bahasa untuk Mendengarkan Cerita</h2>
       <p>Gunakan menu dropdown di kanan atas untuk memilih bahasa daerah yang tersedia.</p>
     </main>
   </div>
@@ -127,10 +178,18 @@
       });
     }
 
+    function logout() {
+      auth.signOut().then(() => {
+        location.reload();
+      });
+    }
+
     auth.onAuthStateChanged(user => {
       if (user) {
         document.getElementById("authContent").style.display = "block";
         document.getElementById("loginContent").style.display = "none";
+        document.getElementById("userName").textContent = user.displayName;
+        document.getElementById("greeting").textContent = `Halo, ${user.displayName}!`;
       } else {
         document.getElementById("authContent").style.display = "none";
         document.getElementById("loginContent").style.display = "block";
