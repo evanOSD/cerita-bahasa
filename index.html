@@ -189,7 +189,7 @@
         document.getElementById("authContent").style.display = "block";
         document.getElementById("loginContent").style.display = "none";
         document.getElementById("userName").textContent = user.displayName;
-        document.getElementById("greeting").textContent = `Halo, ${user.displayName}!`;
+        document.getElementById("greeting").innerHTML = `Hai ${user.displayName}.<br>Selamat datang dan selamat belajar!`;
       } else {
         document.getElementById("authContent").style.display = "none";
         document.getElementById("loginContent").style.display = "block";
